@@ -1,0 +1,103 @@
+/*^
+  ===========================================================================
+  Diff Detector - SDK
+  ===========================================================================
+  Copyright (C) 2017 Gianluca Costa
+  ===========================================================================
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ===========================================================================
+*/
+
+buildscript {
+    repositories {
+        maven {
+            url "https://dl.bintray.com/giancosta86/Hephaestus"
+        }
+
+        mavenCentral()
+
+        jcenter()
+    }
+
+
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+
+        classpath 'info.gianlucacosta.aurora:aurora:9.2'
+        classpath "info.gianlucacosta.moonlicense:moonlicense-gradle:5.0"
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'info.gianlucacosta.moonlicense'
+apply plugin: 'info.gianlucacosta.aurora'
+
+
+group 'info.gianlucacosta.diffdetector'
+archivesBaseName = 'diffdetector-sdk'
+version '1.0'
+
+
+description = "Java SDK for connecting to Diff Detector services"
+
+
+sourceCompatibility = 1.8
+
+
+dependencies {
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'org.apache.httpcomponents:fluent-hc:4.5.4'
+
+    compile 'info.gianlucacosta.diffdetector:diffdetector-core:1.0'
+}
+
+
+moonLicense {
+    license = apache2
+
+    productInfo {
+        productName = "Diff Detector - SDK"
+        inceptionYear = 2017
+        copyrightHolder = "Gianluca Costa"
+    }
+}
+
+
+
+
+aurora {
+    gitHubUser = 'giancosta86'
+
+    author {
+        name = 'Gianluca Costa'
+        email = 'gianluca@gianlucacosta.info'
+        url = 'http://gianlucacosta.info/'
+    }
+
+    bintray {
+        repo = 'Hephaestus'
+        licenses = ['Apache-2.0']
+
+        labels = [
+                'Java',
+                'library',
+                'SDK',
+                'diff',
+                'compare',
+                'binary'
+        ]
+    }
+}
